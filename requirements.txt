@@ -10,7 +10,7 @@ pillow==10.3.0
 streamlit==1.33.0
 streamlit-option-menu==0.3.12
 tensorflow==2.15.0
-sklearn
+scikit-learn
 
 # altair
 # pydeck
