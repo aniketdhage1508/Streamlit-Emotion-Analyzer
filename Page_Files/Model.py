@@ -7,7 +7,10 @@ import re
 import tensorflow as tf
 import contractions
 import nltk
-
+# Download NLTK resources
+nltk.download('stopwords')   # Download stopwords resource
+nltk.download('punkt')   # Download punkt resource for tokenization
+nltk.download('wordnet')   # Download wordnet resource for lemmatization
 from nltk.corpus import stopwords
 from bs4 import BeautifulSoup   # BeautifulSoup for HTML parsing
 from nltk.tokenize import word_tokenize   # Tokenization for splitting text into words
