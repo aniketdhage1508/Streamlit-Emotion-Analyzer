@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="Graph Showcase", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Sentiment Analyzer", page_icon="🔥", layout="wide")
 
 from streamlit_option_menu import option_menu
 from Page_Files import Contact_Us, Home, Model, Visualization, Evaluation, Comparison
