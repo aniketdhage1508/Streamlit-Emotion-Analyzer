@@ -1,5 +1,5 @@
 import streamlit as st
-from keras.saving import pickle_utils
+import pickle
 import numpy as np
 import pandas as pd
 from keras.preprocessing.sequence import pad_sequences   # Padding sequences for equal length input to neural networks
