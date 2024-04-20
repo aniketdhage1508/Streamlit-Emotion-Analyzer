@@ -19,11 +19,11 @@ import contractions   # Contractions for expanding contractions in text
 
 
 def loading_the_files():
-    with open('Files/lstm_model4.pkl', 'rb') as f:
+    with open('Files/lstm_model1.pkl', 'rb') as f:
         loaded_model = pickle.load(f)
-    with open('Files/label_encoder.pkl', 'rb') as f:
+    with open('Files/label_encoder1.pkl', 'rb') as f:
         label_encoder = pickle.load(f)
-    with open('Files/tokenizer.pkl', 'rb') as f:
+    with open('Files/tokenizer1.pkl', 'rb') as f:
         tokenizer = pickle.load(f)
         
     return loaded_model, label_encoder, tokenizer
