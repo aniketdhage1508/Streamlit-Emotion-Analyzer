@@ -3,14 +3,6 @@ import time as ts
 from datetime import time 
 import numpy as np
 import pandas as pd
-
-
-
-
-def stream_data(text_data):
-        for word in text_data.split(" "):
-            yield word + " "
-            ts.sleep(0.02)
         
 
 
@@ -52,7 +44,7 @@ def run():
 
     By implementing this solution, we can build an automated Emotion Prediction system that effectively analyzes text data and predicts emotional states, providing valuable insights for various applications.
     """
-    st.write_stream(stream_data(text_data))
+    st.write(text_data)
     
     # Add footer
     st.markdown(
