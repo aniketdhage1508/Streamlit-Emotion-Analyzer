@@ -45,11 +45,12 @@ model_descriptions = [
 
 # Corresponding paths to images for each model
 model_image_paths = [
-    ["Visualizations/Fig15.png", "Visualizations/Fig16.png"],
-    ["Visualizations/Fig17.png", "Visualizations/Fig18.png"],
-    ["Visualizations/Fig19.png", "Visualizations/Fig20.png"],
-    ["Visualizations/Fig21.png", "Visualizations/Fig22.png"],
-    ["Visualizations/Fig23.png", "Visualizations/Fig24.png"]
+    ["Visualization/Fig19.png", "Visualization/Fig20.png","Visualization/Fig21.png", "Visualization/Fig22.png"],
+
+    ["Visualization/Fig23.png", "Visualization/Fig24.png"],
+    ["Visualization/Fig25.png", "Visualization/Fig26.png"],
+    ["Visualization/Fig27.png", "Visualization/Fig28.png"],
+    ["Visualization/Fig29.png", "Visualization/Fig30.png"],
 ]
 
 # Main function to display the images and descriptions
@@ -69,8 +70,20 @@ def run():
         st.header(model_name)
         st.write(f"<span style='color: #656B79;'>{model_description}</span>", unsafe_allow_html=True)
         
+        if model_name=="1. LSTM":
+            col1, col2 = st.columns(2)
+            with col1:
+                st.image(model_images[0], caption='Training Accuracy Plot', use_column_width=True)
+                st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
+            with col2:
+                if 0 + 1 < len(model_images):
+                    st.image(model_images[0 + 1], caption='Training Loss Plot', use_column_width=True)
+                    st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
+                    
         # Display images in wide mode with two images per row
         for i in range(0, len(model_images), 2):
+            if model_name=="1. LSTM":
+                i=2
             col1, col2 = st.columns(2)
             with col1:
                 st.image(model_images[i], caption='Confusion Matrix', use_column_width=True)
@@ -79,6 +92,8 @@ def run():
                 if i + 1 < len(model_images):
                     st.image(model_images[i + 1], caption='Evaluation Metrices', use_column_width=True)
                     st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
+            if model_name=="1. LSTM":
+                break
                 
         st.write("---")
 
