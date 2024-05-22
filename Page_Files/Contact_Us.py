@@ -5,7 +5,7 @@ def run():
     
     st.header(":mailbox: Contact Us!")
     
-    person = st.selectbox(label = "",options = ["Aniket Dhage","Sanika Butle","Ritika Gadapa","Ashish Deshmukh"])
+    person = st.selectbox(label = "Contact Person",options = ["Aniket Dhage","Sanika Butle","Ritika Gadapa","Ashish Deshmukh"])
     if person=="Aniket Dhage":
         contact_form = """
         <form action="https://formsubmit.co/aniketdhage1508@gmail.com" method="POST">
