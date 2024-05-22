@@ -95,6 +95,8 @@ def run():
             <ul>
                 <li>Aniket Dhage</li>
                 <li>Sanika Butle</li>
+                <li>Ritika Gadapa</li>
+                <li>Ashish Deshmukh</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
