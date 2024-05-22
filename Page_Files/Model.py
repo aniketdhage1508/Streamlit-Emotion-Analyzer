@@ -20,13 +20,25 @@ import contractions   # Contractions for expanding contractions in text
 
 def loading_the_files():
     with open('Files/lstm_model4.pkl', 'rb') as f:
-        loaded_model = pickle.load(f)
+        lstm_model = pickle.load(f)
+    with open('Files/naive_bayes_model.pkl', 'rb') as f:
+        naive_bayes_model = pickle.load(f)
+    with open('Files/random_forest_model.pkl', 'rb') as f:
+        random_forest_model = pickle.load(f)
+    with open('Files/gradient_boosting_model.pkl', 'rb') as f:
+        gradient_boosting_model = pickle.load(f)
+    with open('Files/svm_model.pkl', 'rb') as f:
+        svm_model = pickle.load(f)
+    
+    
     with open('Files/label_encoder.pkl', 'rb') as f:
         label_encoder = pickle.load(f)
     with open('Files/tokenizer.pkl', 'rb') as f:
         tokenizer = pickle.load(f)
+    with open('Files/tokenizer4.pkl', 'rb') as f:
+        tokenizer4 = pickle.load(f)
         
-    return loaded_model, label_encoder, tokenizer
+    return lstm_model, naive_bayes_model, random_forest_model, gradient_boosting_model, svm_model, label_encoder, tokenizer, tokenizer4
 
 ##**Data Cleaning**
 
@@ -111,13 +123,17 @@ def Preprocessor(Tweet):
     return Stemmed_Tokens
 
 
-def predict_emotion(text, loaded_model, label_encoder, tokenizer):
+
+def lstm_predict(text_input, lstm_model, label_encoder, tokenizer):
     
-    processed_text = Preprocessor(text)
+    if text_input=="":
+        return
+    
+    processed_text = Preprocessor(text_input)
     tokenized_text = tokenizer.texts_to_sequences([processed_text])
     padded_text = pad_sequences(tokenized_text, maxlen=35, padding='post')
     # Make prediction
-    emotion_probabilities = loaded_model.predict(padded_text)[0]
+    emotion_probabilities = lstm_model.predict(padded_text)[0]
     # Get the predicted emotion class
     predicted_emotion_class = np.argmax(emotion_probabilities)
     # Map predicted class to emotion label
@@ -125,12 +141,72 @@ def predict_emotion(text, loaded_model, label_encoder, tokenizer):
     
     return predicted_emotion_label
 
-def btn_click(text_input, loaded_model, label_encoder, tokenizer):
+def naive_bayes_predict(text_input, naive_bayes_model, label_encoder, tokenizer):
     
     if text_input=="":
         return
-    predicted_emotion_label = predict_emotion(text_input, loaded_model, label_encoder, tokenizer)
+    
+    processed_text = Preprocessor(text_input)
+    # Make prediction
+    emotion_probabilities = naive_bayes_model.predict(processed_text)[0]
+    # Get the predicted emotion class
+    predicted_emotion_class = np.argmax(emotion_probabilities)
+    # Map predicted class to emotion label
+    predicted_emotion_label = label_encoder.classes_[predicted_emotion_class]
+    
     return predicted_emotion_label
+
+def random_forest_predict(text_input, random_forest_model, label_encoder, tokenizer):
+    
+    if text_input=="":
+        return
+    
+    processed_text = Preprocessor(text_input)
+    tokenized_text = tokenizer.texts_to_sequences([processed_text])
+    padded_text = pad_sequences(tokenized_text, maxlen=50, padding='post')
+    # Make prediction
+    emotion_probabilities = random_forest_model.predict(padded_text)[0]
+    # Get the predicted emotion class
+    predicted_emotion_class = np.argmax(emotion_probabilities)
+    # Map predicted class to emotion label
+    predicted_emotion_label = label_encoder.classes_[predicted_emotion_class]
+    
+    return predicted_emotion_label
+
+def gradient_boosting_predict(text_input, gradient_boosting_model, label_encoder, tokenizer):
+    
+    if text_input=="":
+        return
+    
+    processed_text = Preprocessor(text_input)
+    tokenized_text = tokenizer.texts_to_sequences([processed_text])
+    padded_text = pad_sequences(tokenized_text, maxlen=50, padding='post')
+    # Make prediction
+    emotion_probabilities = gradient_boosting_model.predict(padded_text)[0]
+    # Get the predicted emotion class
+    predicted_emotion_class = np.argmax(emotion_probabilities)
+    # Map predicted class to emotion label
+    predicted_emotion_label = label_encoder.classes_[predicted_emotion_class]
+    
+    return predicted_emotion_label
+
+def svm_model_predict(text_input, svm_model, label_encoder, tokenizer):
+    
+    if text_input=="":
+        return
+    
+    processed_text = Preprocessor(text_input)
+    tokenized_text = tokenizer.texts_to_sequences([processed_text])
+    padded_text = pad_sequences(tokenized_text, maxlen=50, padding='post')
+    # Make prediction
+    emotion_probabilities = svm_model.predict(padded_text)[0]
+    # Get the predicted emotion class
+    predicted_emotion_class = np.argmax(emotion_probabilities)
+    # Map predicted class to emotion label
+    predicted_emotion_label = label_encoder.classes_[predicted_emotion_class]
+    
+    return predicted_emotion_label
+
 
 
 
@@ -143,14 +219,24 @@ def run():
     st.markdown(html_temp, unsafe_allow_html=True)
     st.subheader('This is a simple sentiment prediction app')
     # Load the model and label encoder
-    loaded_model, label_encoder, tokenizer = loading_the_files()
+    lstm_model, naive_bayes_model, random_forest_model, gradient_boosting_model, svm_model, label_encoder, tokenizer, tokenizer4 = loading_the_files()
 
-        
-    # Get user input
+    
+    model_name = st.selectbox("Choose any Model",["LSTM Model","Naive Bayes Model","Gradient Boosting Model","Random Forest Model","SVM Model"])
     text_input = st.text_area('Enter your text', max_chars=100, placeholder="Enter Some Text to Predict the Emotion Eg. I hate you")
-        
+    
     if st.button("Predict"):
-        predicted_emotion_label = btn_click(text_input, loaded_model, label_encoder, tokenizer)
+        if model_name == "LSTM Model":
+            predicted_emotion_label = lstm_predict(text_input, lstm_model, label_encoder, tokenizer4)
+        elif model_name == "Naive Bayes Model":
+            predicted_emotion_label = naive_bayes_predict(text_input, naive_bayes_model, label_encoder, tokenizer)
+        elif model_name == "Gradient Boosting Model":
+            predicted_emotion_label = gradient_boosting_predict(text_input, gradient_boosting_model, label_encoder, tokenizer)
+        elif model_name == "Random Forest Model":
+            predicted_emotion_label = random_forest_predict(text_input, random_forest_model, label_encoder, tokenizer)
+        elif model_name == "SVM Model":
+            predicted_emotion_label = svm_model_predict(text_input, svm_model, label_encoder, tokenizer)
+        
         if predicted_emotion_label==None:
             st.error("Enter the Text First")
         else:
@@ -159,6 +245,7 @@ def run():
                 st.success("The Emotion Predicted is : **{}**".format(predicted_emotion_label.capitalize()))
             else:
                 st.success("The Emotion Predicted is : **{}**".format(predicted_emotion_label.capitalize()))
+    
     # if col2.button("Text File"):
     #     st. title("Upload your File")
     #     st. markdown ("---")
@@ -171,7 +258,7 @@ def run():
     #         # Tokenize and pad the text data
     #         sequences = tokenizer.texts_to_sequences(X)
     #         X = pad_sequences(sequences, maxlen=35)
-    #         predicted_emotions = loaded_model.predict(X)
+    #         predicted_emotions = lstm_model.predict(X)
 
     #         predicted_emotions = np.argmax(predicted_emotions)
     #         # Map predicted class to emotion label
