@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 # Add background image with absolute URL
-background_image_url = "Visualizations\Fig1.png"
+background_image_url = "Visualization\Fig1.png"
 st.markdown(
     f"""
     <style>
@@ -19,20 +19,20 @@ st.markdown(
 
 # Define image paths
 image_paths = [
-    "Visualizations/Fig1.png",
-    "Visualizations/Fig2.png",
-    "Visualizations/Fig3.png",
-    "Visualizations/Fig4.png",
-    "Visualizations/Fig5.png",
-    "Visualizations/Fig6.png",
-    "Visualizations/Fig7.png",
-    "Visualizations/Fig8.png",
-    "Visualizations/Fig9.png",
-    "Visualizations/Fig10.png",
-    "Visualizations/Fig11.png",
-    "Visualizations/Fig12.png",
-    "Visualizations/Fig13.png",
-    "Visualizations/Fig14.png",    
+    "Visualization/Fig1.png",
+    "Visualization/Fig2.png",
+    "Visualization/Fig3.png",
+    "Visualization/Fig4.png",
+    "Visualization/Fig5.png",
+    "Visualization/Fig6.png",
+    "Visualization/Fig7.png",
+    "Visualization/Fig8.png",
+    "Visualization/Fig9.png",
+    "Visualization/Fig10.png",
+    "Visualization/Fig11.png",
+    "Visualization/Fig12.png",
+    "Visualization/Fig13.png",
+    "Visualization/Fig14.png",    
 ]
 
 # Display title and images
