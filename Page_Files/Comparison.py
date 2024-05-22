@@ -58,12 +58,13 @@ def run():
 
     # Display images and descriptions
     for info in graph_info:
-        col1, col2 = st.columns([5, 3])  # Divide the layout into 3/4 and 1/4 columns
-        with col1:
+      col1, col2 = st.columns([5, 3])  # Divide the layout into 3/4 and 1/4 columns
+      with col1:
             st.image(info["path"], caption=info["caption"], width=None, use_column_width="auto")
             st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
-        with col2:
+      with col2:
             st.markdown(info["description"], unsafe_allow_html=True)
+      st.write("---")
 
     # Conclusion box
     st.markdown(
