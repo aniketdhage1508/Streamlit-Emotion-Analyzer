@@ -64,7 +64,7 @@ def run():
             st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
       with col2:
             st.markdown(info["description"], unsafe_allow_html=True)
-      st.write("---")
+      
 
     # Conclusion box
     st.markdown(
