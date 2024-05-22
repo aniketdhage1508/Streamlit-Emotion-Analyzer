@@ -14,7 +14,7 @@ def run():
     
     # Define image paths, captions, and descriptions
     graph_info = [
-        {"path": "Visualizations/Fig25.png",
+        {"path": "Visualization/Fig25.png",
          "caption": "Fig 1.Accuracy of all models",
          "description": """
             <ul>
@@ -24,7 +24,7 @@ def run():
                 <li>Higher accuracy values suggest better overall performance of the models in correctly predicting emotions.</li>
             </ul>
          """},
-        {"path": "Visualizations/Fig26.png",
+        {"path": "Visualization/Fig26.png",
          "caption": "Fig 2.Precision of all models",
          "description": """
             <ul>
@@ -34,7 +34,7 @@ def run():
                 <li>Higher precision values imply that the model makes fewer false positive predictions for emotions.</li>
             </ul>
          """},
-        {"path": "Visualizations/Fig27.png",
+        {"path": "Visualization/Fig27.png",
          "caption": "Fig 3.F1 score of all models",
          "description": """
             <ul>
@@ -44,7 +44,7 @@ def run():
                 <li>This plot showcases the F1-score for each model, offering insights into their overall effectiveness in correctly classifying emotions.</li>
             </ul>
          """},
-        {"path": "Visualizations/Fig28.png",
+        {"path": "Visualization/Fig28.png",
          "caption": "Fig 4.Recall of all models",
          "description": """
             <ul>
