@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 import time as ts
 from datetime import time 
 import numpy as np
@@ -22,29 +23,44 @@ def run():
 )
 
     st.markdown("---")
-    text_data = """
-    **Problem Statement:**
-    In many online platforms, understanding the emotional response of users to content is vital for improving user experience, engagement, and overall satisfaction. However, manually analyzing large volumes of text data to determine emotional states is time-consuming and impractical. Therefore, the need for automated emotion detection systems arises. These systems must accurately predict emotions from text data to provide valuable insights for various applications.
+    st.write("""**Problem Statement:**
+    In many online platforms, understanding the emotional response of users to content is vital for improving user experience, engagement, and overall satisfaction. However, manually analyzing large volumes of text data to determine emotional states is time-consuming and impractical. Therefore, the need for automated emotion detection systems arises. These systems must accurately predict emotions from text data to provide valuable insights for various applications.""")
 
-    **Introduction:**
+    st.write("""**Introduction:**
     The project aims to develop an Emotion Prediction system using text data. Emotion prediction from text is crucial in various applications such as sentiment analysis, customer feedback analysis, mental health monitoring, and chatbot interactions. By analyzing text data and predicting emotions, this system can provide valuable insights into the emotional states of individuals, sentiment trends, and user interactions.
-
+    """)
+    
+    st.write("""
     **Solution:**
-    The solution involves building a machine learning model that can predict emotions from text data. By leveraging Natural Language Processing (NLP) techniques, the system can analyze textual content and extract features that represent emotional states. These features are then used to train machine learning models to predict emotions accurately. The system undergoes several stages:
-
+    The solution involves building a machine learning model that can predict emotions from text data. By leveraging Natural Language Processing (NLP) techniques, the system can analyze textual content and extract features that represent emotional states. These features are then used to train machine learning models to predict emotions accurately. The system undergoes several stages:""")
+    
+    image = Image.open("Visualization/Flow_Diagram.jpeg")
+    st.image(image, use_column_width=True, caption=f"Flow Diagram")
+    st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
+    
+    st.write("""
     1. **Exploratory Data Analysis (EDA):** Analyzing the dataset to understand the distribution of emotions, the frequency of different emotional categories, and any patterns or trends present in the data.
 
-    2. **Preprocessing:** Cleaning and preprocessing the text data by removing noise, tokenizing text into words or sentences, removing stop words, and performing other text normalization techniques to prepare the data for model training.
+    2. **Preprocessing:** Cleaning and preprocessing the text data by removing noise, tokenizing text into words or sentences, removing stop words, and performing other text normalization techniques to prepare the data for model training.""")
+    
+    image = Image.open("Visualization/Text_Preprocessing.jpeg")
+    st.image(image, use_column_width=True, caption=f"Text Preprocessing(NLP)")
+    st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
+    
+    st.write("""
+    3. **Model Building:** Developing machine learning models using various algorithms such as LSTM (Long Short-Term Memory), Naive Bayes, Random Forest, Gradient Boosting, and SVM (Support Vector Machines). These models are trained on the preprocessed text data to learn the relationship between textual features and emotional categories.""")
+    
+    image = Image.open("Visualization/Model_Architecture.jpeg")
+    st.image(image, use_column_width=True, caption=f"LSTM Model Architecture")
+    st.markdown("<style>img {border-radius: 10px;}</style>", unsafe_allow_html=True)
 
-    3. **Model Building:** Developing machine learning models using various algorithms such as LSTM (Long Short-Term Memory), Naive Bayes, Random Forest, Gradient Boosting, and SVM (Support Vector Machines). These models are trained on the preprocessed text data to learn the relationship between textual features and emotional categories.
-
+    st.write("""
     4. **Evaluation:** Evaluating the performance of each model using metrics such as accuracy, precision, recall, and F1 score. This helps in assessing how well each model generalizes to unseen data and how effectively it predicts emotions from text.
 
     5. **Comparison:** Comparing the performance of all the models based on the evaluation metrics to identify the most effective model for emotion prediction. This comparison helps in selecting the best model for deployment in real-world applications.
 
     By implementing this solution, we can build an automated Emotion Prediction system that effectively analyzes text data and predicts emotional states, providing valuable insights for various applications.
-    """
-    st.write(text_data)
+    """)
     
     # Add footer
     st.markdown(
